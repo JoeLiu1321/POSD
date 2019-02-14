@@ -3,6 +3,10 @@
 #include "node_iterator.h"
 class NullIterator:public NodeIterator{
     public:
+        NullIterator(){
+
+        }
+        
         void first(){
 
         }

@@ -10,7 +10,7 @@ class Folder;
 
 class FindNodeByPathnameVisitor:public NodeVisitor{
     public:
-      FindNodeByPathnameVisitor(vector<string>* pathnames):_pathnames(pathnames){
+      FindNodeByPathnameVisitor(vector<string>* path_names):_path_names(path_names){
           clean();
       }
       
@@ -21,7 +21,7 @@ class FindNodeByPathnameVisitor:public NodeVisitor{
       void visitLink(Link * link);
       
       void clean(){
-        _pathtmp.clear();
+        _path_tmp.clear();
         clonePath();
         _result=nullptr;
       }
@@ -31,12 +31,12 @@ class FindNodeByPathnameVisitor:public NodeVisitor{
       }
 
       void clonePath(){
-        for(int i=0;i<_pathnames->size();i++)
-            _pathtmp.push_back(_pathnames->at(i));
+        for(int i=0;i<_path_names->size();i++)
+            _path_tmp.push_back(_path_names->at(i));
       }
     private:
         Node * _result;
-        vector<string>* _pathnames;
-        vector<string> _pathtmp;
+        vector<string>* _path_names;
+        vector<string> _path_tmp;
 };
 #endif

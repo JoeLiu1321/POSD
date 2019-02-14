@@ -3,14 +3,17 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <string>
+#include <cstring>
 #include <vector>
+#include "null_iterator.h"
 using namespace std;
 
 class NodeVisitor;
 class NodeIterator;
 class Node{
 public:
-  Node(const char * path): _path(path){
+  Node(const char * path){
+    setPath(path);
     if(lstat(_path, &_st)!=0)
       throw string("The path is not correspond!!!!!!!!");
     _parent=nullptr;  
@@ -22,7 +25,7 @@ public:
   virtual void acceptInner(NodeVisitor *nv)=0;
 
   virtual NodeIterator * createIterator(){
-    return nullptr;
+    return new NullIterator();
   }
 
   virtual void add(Node *node){
@@ -54,8 +57,7 @@ public:
         break;
       }
     }
-    int end=(j==0?s.size():s.size()-1);
-    s=s.substr(j,end);
+    s=s.substr(j);
     return s;
   }
 
@@ -64,12 +66,16 @@ public:
     return s;
   }
 
+  void setPath(const char* path){
+      _path=(char*)path;
+  }
+
   struct stat getStat(){
     return _st;
   }
 
 private:
-  const char * _path;
+  char* _path;
   struct stat _st;
   Node *_parent;
 };

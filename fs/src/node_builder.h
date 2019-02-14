@@ -13,6 +13,10 @@ using namespace std;
 class NodeBuilder {
 public:
   NodeBuilder() {}
+  
+  ~NodeBuilder(){
+    
+  }
 
   void build(const char * path) {
     struct stat st;

@@ -65,7 +65,7 @@ class Folder:public Node{
     void acceptInner(NodeVisitor *nv){
       nv->visitFolder(this);
     }
-
+    
     NodeIterator * createIterator(){
       return new FolderIterator(this);
     }

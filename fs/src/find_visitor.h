@@ -39,9 +39,9 @@ class FindVisitor:public NodeVisitor{
         }
         
         string findResult(){
-            string tmp=_result,s=(_find.size()==0 ? "" : _find.front()->path()+"/");
-            for(int i=1 ; i < _find.size() ; i++){
-                tmp=tmp+"./"+_find[i]->path().substr( s.size() , _find[i]->path().size()-s.size() );
+            string tmp=_result,s=(_find.size()==0 ? "":_find.front()->path()+"/");
+            for(int i=1;i<_find.size();i++){
+                tmp=tmp+"./"+_find[i]->path().substr(s.size());
                 if(i!=_find.size()-1)
                     tmp+="\n";
             }
